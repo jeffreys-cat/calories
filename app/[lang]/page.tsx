@@ -16,19 +16,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
 import { ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react'
-import { useLanguage } from '../LanguageContext'
-import { Language } from '../translations'
+import { useLanguage } from '@/LanguageContext'
+import { Language } from '../../translations'
 
 export default function Home() {
-  const { t, language, setLanguage } = useLanguage();
+  const { t, language } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('')
-  const [sortBy, setSortBy] = useState<'calories' | 'sugar' | 'riceComparison'>('calories')
+  const [sortBy, setSortBy] = useState<'calories' | 'sugar' | 'riceComparison' | 'gi'>('calories')
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
 
   const categories: Food['category'][] = ['fruit', 'vegetable', 'nut', 'staple', 'meat']
   const rice = foods.find(food => food.name.en === 'Rice') || { calories: 130, sugar: 0.1, name: { en: 'Rice' } };
 
-  const handleSort = (column: 'calories' | 'sugar' | 'riceComparison') => {
+  const handleSort = (column: 'calories' | 'sugar' | 'riceComparison' | 'gi') => {
     if (sortBy === column) {
       setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
     } else {
@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <div className="mt-4">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold">{t('title')}</h2>
+        <h2 className="text-xl font-semibold">{t('nutritionalInformation')}</h2>
       </div>
       
       <div className="mb-4">
@@ -79,7 +79,7 @@ export default function Home() {
               sortOrder={sortOrder}
               onSort={handleSort}
               category={t(category as 'fruits' | 'vegetables' | 'nuts' | 'staples' | 'meats')}
-              rice={rice as any}
+              rice={rice}
             />
           </TabsContent>
         ))}
@@ -90,9 +90,9 @@ export default function Home() {
 
 interface FoodTableProps {
   foods: Food[]
-  sortBy: 'calories' | 'sugar' | 'riceComparison'
+  sortBy: 'calories' | 'sugar' | 'riceComparison' | 'gi'
   sortOrder: 'asc' | 'desc'
-  onSort: (column: 'calories' | 'sugar' | 'riceComparison') => void
+  onSort: (column: 'calories' | 'sugar' | 'riceComparison' | 'gi') => void
   category: string
   rice: Food
 }
@@ -126,6 +126,13 @@ function FoodTable({ foods, sortBy, sortOrder, onSort, category, rice }: FoodTab
             </Button>
           </TableHead>
           <TableHead>
+            <Button variant="ghost" onClick={() => onSort('gi')}>
+              {t('glycemicIndex')}
+              {sortBy === 'gi' && (sortOrder === 'asc' ? <ArrowUp className="ml-2 h-4 w-4" /> : <ArrowDown className="ml-2 h-4 w-4" />)}
+              {sortBy !== 'gi' && <ArrowUpDown className="ml-2 h-4 w-4" />}
+            </Button>
+          </TableHead>
+          <TableHead>
             <Button variant="ghost" onClick={() => onSort('riceComparison')}>
               {t('riceComparison')}
               {sortBy === 'riceComparison' && (sortOrder === 'asc' ? <ArrowUp className="ml-2 h-4 w-4" /> : <ArrowDown className="ml-2 h-4 w-4" />)}
@@ -140,6 +147,7 @@ function FoodTable({ foods, sortBy, sortOrder, onSort, category, rice }: FoodTab
             <TableCell>{food.name[language] || food.name.en}</TableCell>
             <TableCell>{food.calories}</TableCell>
             <TableCell>{food.sugar}</TableCell>
+            <TableCell>{food.gi}</TableCell>
             <TableCell>
               <div className="flex items-center gap-2">
                 <Progress 

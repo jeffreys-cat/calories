@@ -1,0 +1,13 @@
+{
+  "title": "水果、蔬菜和坚果的营养信息",
+  "searchPlaceholder": "搜索食物...",
+  "fruits": "水果",
+  "vegetables": "蔬菜",
+  "nuts": "坚果",
+  "name": "名称",
+  "calories": "卡路里",
+  "sugar": "糖分 (克)",
+  "riceComparison": "与米饭热量比",
+  "perHundredGrams": "每100克"
+}
+

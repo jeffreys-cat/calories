@@ -1,0 +1,13 @@
+{
+  "title": "果物、野菜、ナッツの栄養情報",
+  "searchPlaceholder": "食品を検索...",
+  "fruits": "果物",
+  "vegetables": "野菜",
+  "nuts": "ナッツ",
+  "name": "名前",
+  "calories": "カロリー",
+  "sugar": "糖質 (g)",
+  "riceComparison": "米との比較",
+  "perHundredGrams": "100gあたり"
+}
+

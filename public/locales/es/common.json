@@ -1,0 +1,59 @@
+\`\`\`jsx
+import React from 'react';
+
+const data = {
+  "title": "Información nutricional de frutas, verduras y frutos secos",
+  "searchPlaceholder": "Buscar alimentos...",
+  "fruits": "Frutas",
+  "vegetables": "Verduras",
+  "nuts": "Frutos secos",
+  "name": "Nombre",
+  "calories": "Calorías",
+  "sugar": "Azúcar (g)",
+  "riceComparison": "Comparado con el arroz",
+  "perHundredGrams": "por 100g"
+};
+
+const NutritionTable = () => {
+  return (
+    <div>
+      <h1>{data.title}</h1>
+      <input type="text" placeholder={data.searchPlaceholder} />
+      <table>
+        <thead>
+          <tr>
+            <th>{data.name}</th>
+            <th>{data.calories}</th>
+            <th>{data.sugar}</th>
+            <th>{data.riceComparison}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {/* Example data - replace with actual data fetching */}
+          <tr>
+            <td>Manzana</td>
+            <td>52 {data.perHundredGrams}</td>
+            <td>10 {data.perHundredGrams}</td>
+            <td>Menos azúcar que el arroz</td>
+          </tr>
+          <tr>
+            <td>Zanahoria</td>
+            <td>41 {data.perHundredGrams}</td>
+            <td>4 {data.perHundredGrams}</td>
+            <td>Menos azúcar que el arroz</td>
+          </tr>
+          <tr>
+            <td>Almendras</td>
+            <td>579 {data.perHundredGrams}</td>
+            <td>4 {data.perHundredGrams}</td>
+            <td>Menos azúcar que el arroz</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default NutritionTable;
+\`\`\`
+

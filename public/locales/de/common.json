@@ -1,0 +1,17 @@
+const data = {
+  title: "Nährwertinformationen für Obst, Gemüse und Nüsse",
+  searchPlaceholder: "Lebensmittel suchen...",
+  fruits: "Obst",
+  vegetables: "Gemüse",
+  nuts: "Nüsse",
+  columns: [
+    { name: "name", label: "Name" },
+    { name: "calories", label: "Kalorien" },
+    { name: "sugar", label: "Zucker (g)" },
+  ],
+  comparison: {
+    label: "Im Vergleich zu Reis",
+    unit: "pro 100g"
+  }
+};
+

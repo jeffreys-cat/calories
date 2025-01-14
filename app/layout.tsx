@@ -1,9 +1,22 @@
-import "styles/tailwind.css"
+"use client";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+import { LanguageProvider } from "@/LanguageContext";
+import { Language } from "@/translations";
+
+export default function LanguageWrapper({
+  children,
+  lang,
+}: {
+  children: React.ReactNode;
+  lang: Language;
+}) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  )
+    <LanguageProvider lang={lang}>
+      <html>
+        <body>{children}</body>
+      </html>
+    </LanguageProvider>
+  );
 }
+
+import "./globals.css";

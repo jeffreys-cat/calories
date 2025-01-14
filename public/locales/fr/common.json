@@ -1,0 +1,32 @@
+const nutritionData = {
+  title: "Informations nutritionnelles pour les fruits, légumes et noix",
+  searchPlaceholder: "Rechercher des aliments...",
+  categories: [
+    {
+      name: "Fruits",
+      items: [
+        // Fruit data will go here
+      ]
+    },
+    {
+      name: "Légumes",
+      items: [
+        // Vegetable data will go here
+      ]
+    },
+    {
+      name: "Noix",
+      items: [
+        // Nut data will go here
+      ]
+    }
+  ],
+  columns: [
+    { name: "Nom", field: "name" },
+    { name: "Calories", field: "calories" },
+    { name: "Sucre (g)", field: "sugar" },
+    { name: "Par rapport au riz", field: "riceComparison" }
+  ],
+  perHundredGrams: "pour 100g"
+};
+

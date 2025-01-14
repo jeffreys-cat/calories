@@ -1,0 +1,44 @@
+const nutritionData = {
+  title: "Informazioni nutrizionali per frutta, verdura e frutta secca",
+  searchPlaceholder: "Cerca alimenti...",
+  sections: [
+    {
+      title: "Frutta",
+      items: [
+        // Frutta data here
+      ]
+    },
+    {
+      title: "Verdura",
+      items: [
+        // Verdura data here
+      ]
+    },
+    {
+      title: "Frutta secca",
+      items: [
+        // Frutta secca data here
+      ]
+    }
+  ],
+  columns: [
+    {
+      name: "Nome",
+      field: "name"
+    },
+    {
+      name: "Calorie",
+      field: "calories"
+    },
+    {
+      name: "Zuccheri (g)",
+      field: "sugar"
+    },
+    {
+      name: "Rispetto al riso",
+      field: "riceComparison"
+    }
+  ],
+  perHundredGrams: "per 100g"
+};
+

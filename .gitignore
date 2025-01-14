@@ -12,7 +12,7 @@ coverage
 .next/
 out/
 build
-
+dist
 # misc
 .DS_Store
 *.pem
@@ -28,8 +28,35 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-/test-results/
-/playwright-report/
-/playwright/.cache/
+.env.desktop
 
-/.npm-only-allow
+# turbo
+.turbo
+
+.contentlayer
+.env
+.env.desktop
+output
+
+# python
+.venv
+
+# ide
+.vscode
+
+# log
+*.log
+*.log.gz
+*-audit.json
+
+# Million Lint
+.million
+/studio
+
+# electron package
+/desktop
+/data
+/logs
+webui
+/logs
+node_modules

@@ -1,26 +1,57 @@
-import withBundleAnalyzer from "@next/bundle-analyzer"
-import withPlugins from "next-compose-plugins"
-import { env } from "./env.mjs"
+let userConfig = undefined;
+try {
+  userConfig = await import("./v0-user-next.config");
+} catch (e) {
+  // ignore error
+}
 
-/**
- * @type {import('next').NextConfig}
- */
-const config = withPlugins([[withBundleAnalyzer({ enabled: env.ANALYZE })]], {
-  reactStrictMode: true,
-  logging: {
-    fetches: {
-      fullUrl: true,
-    },
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
   },
-  experimental: { instrumentationHook: true },
-  rewrites() {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  images: {
+    unoptimized: true,
+  },
+  experimental: {
+    webpackBuildWorker: true,
+    parallelServerBuildTraces: true,
+    parallelServerCompiles: true,
+  },
+  redirects: async () => {
     return [
-      { source: "/healthz", destination: "/api/health" },
-      { source: "/api/healthz", destination: "/api/health" },
-      { source: "/health", destination: "/api/health" },
-      { source: "/ping", destination: "/api/health" },
-    ]
+      {
+        source: "/",
+        destination: "/en",
+        permanent: true,
+      },
+    ];
   },
-})
+};
 
-export default config
+mergeConfig(nextConfig, userConfig);
+
+function mergeConfig(nextConfig, userConfig) {
+  if (!userConfig) {
+    return;
+  }
+
+  for (const key in userConfig) {
+    if (
+      typeof nextConfig[key] === "object" &&
+      !Array.isArray(nextConfig[key])
+    ) {
+      nextConfig[key] = {
+        ...nextConfig[key],
+        ...userConfig[key],
+      };
+    } else {
+      nextConfig[key] = userConfig[key];
+    }
+  }
+}
+
+export default nextConfig;
